@@ -7,6 +7,8 @@ import java.sql.Connection;
 
 import org.junit.Test;
 
+import ua.khpi.bibik.hospital_system.db.connectionpool.exception.ConnectionPoolException;
+
 public class ConnectionPoolTest {
 
 	@Test

@@ -1,4 +1,4 @@
-package ua.khpi.bibik.hospital_system.db.connectionpool;
+package ua.khpi.bibik.hospital_system.db.connectionpool.exception;
 
 public class ConnectionPoolException extends Exception {
 

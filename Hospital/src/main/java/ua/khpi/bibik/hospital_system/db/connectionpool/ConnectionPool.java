@@ -25,6 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import ua.khpi.bibik.hospital_system.db.DBPropertyKey;
 import ua.khpi.bibik.hospital_system.db.DBPropertyReader;
+import ua.khpi.bibik.hospital_system.db.connectionpool.exception.ConnectionPoolException;
 
 public class ConnectionPool {
 	
