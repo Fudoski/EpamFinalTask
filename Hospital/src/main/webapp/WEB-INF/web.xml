@@ -7,7 +7,7 @@
   <servlet>
   	<servlet-name>FrontServletController</servlet-name>
   	<display-name>FrontServletController</display-name>
-  	<description></description>
+  	<description>Process all request</description>
   	<servlet-class>ua.khpi.bibik.hospital_system.servlet.controller.FrontServletController</servlet-class>
   </servlet>
   <servlet-mapping>
