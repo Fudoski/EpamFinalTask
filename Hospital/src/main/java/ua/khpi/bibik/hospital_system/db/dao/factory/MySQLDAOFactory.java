@@ -7,10 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
 import ua.khpi.bibik.hospital_system.db.dao.AbstractDAO;
 import ua.khpi.bibik.hospital_system.db.dao.PatientDAO;
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
-import ua.khpi.bibik.hospital_system.entity.Entity;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
 
-public class MySQLDAOFactory implements DAOFactory<Entity> {
+public class MySQLDAOFactory implements DAOFactory {
 
 	/**
 	 * constant used to lock monitor
@@ -21,6 +20,7 @@ public class MySQLDAOFactory implements DAOFactory<Entity> {
 	/**
 	 * instance of dao factory
 	 */
+
 	private static MySQLDAOFactory instance;
 
 	/**
@@ -32,7 +32,7 @@ public class MySQLDAOFactory implements DAOFactory<Entity> {
 
 	private MySQLDAOFactory() {
 		creators = new HashMap<>();
-
+		
 		creators.put(Patient.class, () -> new PatientDAO());
 	}
 
@@ -51,16 +51,13 @@ public class MySQLDAOFactory implements DAOFactory<Entity> {
 		return instance;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("rawtypes")
 	@Override
-	public AbstractDAO<Entity> getDao(Class dtoClass) throws DAOException {
-		DaoCreator<Entity> creator = creators.get(dtoClass);
+	public AbstractDAO getDao(Class dtoClass) throws DAOException {
+		DaoCreator creator = creators.get(dtoClass);
 		if (creator == null) {
 			throw new DAOException("Dao object for " + dtoClass + " not found.");
 		}
 		return creator.create();
 	}
-
-	
-
 }

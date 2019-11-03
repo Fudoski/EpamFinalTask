@@ -2,14 +2,15 @@ package ua.khpi.bibik.hospital_system.db.dao.factory;
 
 import ua.khpi.bibik.hospital_system.db.dao.AbstractDAO;
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
-import ua.khpi.bibik.hospital_system.entity.Entity;
 
-public interface DAOFactory<E extends Entity> {
+public interface DAOFactory {
 	
-	public interface DaoCreator<E extends Entity> {
+	public interface DaoCreator {
 
-		public AbstractDAO<E> create();
+		@SuppressWarnings("rawtypes")
+		public AbstractDAO create();
 	}
 
-	public AbstractDAO<E> getDao(Class<E> dtoClass) throws DAOException;
+	@SuppressWarnings("rawtypes")
+	public AbstractDAO getDao(Class dtoClass) throws DAOException;
 }
