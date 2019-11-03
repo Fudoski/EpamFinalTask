@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import ua.khpi.bibik.hospital_system.command.Command;
 import ua.khpi.bibik.hospital_system.command.exception.CommandException;
 import ua.khpi.bibik.hospital_system.command.exception.CommandNotImplimentedException;
-import ua.khpi.bibik.hospital_system.command.exception.CommandNotInitializedException;
 
 public class RequestCommand implements Command {
 
