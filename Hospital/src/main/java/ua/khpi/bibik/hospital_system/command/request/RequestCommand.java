@@ -39,7 +39,7 @@ public class RequestCommand implements Command {
 		getDispatcher(target).include(request, response);
 	}
 
-	protected void(String target) throws ServletException, IOException, CommandException {
+	protected void forward(String target) throws ServletException, IOException, CommandException {
 		check();
 		getDispatcher(target).forward(request, response);
 	}
