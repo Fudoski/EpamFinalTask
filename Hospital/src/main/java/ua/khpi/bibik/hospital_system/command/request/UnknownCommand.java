@@ -1,11 +1,10 @@
-package ua.khpi.bibik.hospital_system.command.request.concrete;
+package ua.khpi.bibik.hospital_system.command.request;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 
 import ua.khpi.bibik.hospital_system.command.exception.CommandException;
-import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
 
 public class UnknownCommand extends RequestCommand {
 

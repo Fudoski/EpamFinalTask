@@ -6,7 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
-import ua.khpi.bibik.hospital_system.command.request.concrete.UnknownCommand;
+import ua.khpi.bibik.hospital_system.command.request.UnknownCommand;
+import ua.khpi.bibik.hospital_system.command.request.general.LoginCommand;
 
 public class CommandFactory {
 	
@@ -16,11 +17,13 @@ public class CommandFactory {
 
 	private CommandFactory() {
 		commands = new HashMap<String, RequestCommand>();
+		commands.put("POST/login", new LoginCommand());
 	}
 
 	public static CommandFactory getInstanse() {
 		if (instanse == null) {
 			instanse = new CommandFactory();
+			
 		}
 		return instanse;
 	}

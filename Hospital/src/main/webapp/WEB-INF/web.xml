@@ -3,15 +3,44 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>FrontServletController</servlet-name>
-  	<display-name>FrontServletController</display-name>
-  	<description>Process all request</description>
-  	<servlet-class>ua.khpi.bibik.hospital_system.servlet.controller.FrontServletController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>FrontServletController</servlet-name>
-  	<url-pattern>/</url-pattern>
-  </servlet-mapping>
+	<display-name>Archetype Created Web Application</display-name>
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<display-name>EncodingFilter</display-name>
+		<description>Set response content type to UTF-8</description>
+		<filter-class>ua.khpi.bibik.hospital_system.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>FrontServletController</servlet-name>
+		<display-name>FrontServletController</display-name>
+		<description>Process all request</description>
+		<servlet-class>ua.khpi.bibik.hospital_system.servlets.controller.FrontServletController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontServletController</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.map</url-pattern>
+	</servlet-mapping>
 </web-app>
