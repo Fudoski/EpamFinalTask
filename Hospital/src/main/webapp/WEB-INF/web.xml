@@ -18,7 +18,7 @@
 		<servlet-name>FrontServletController</servlet-name>
 		<display-name>FrontServletController</display-name>
 		<description>Process all request</description>
-		<servlet-class>ua.khpi.bibik.hospital_system.servlets.controller.FrontServletController</servlet-class>
+		<servlet-class>ua.khpi.bibik.hospital_system.servlet.controller.FrontServletController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FrontServletController</servlet-name>
