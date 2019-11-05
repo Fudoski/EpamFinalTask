@@ -20,7 +20,7 @@ public abstract class AbstractDAO<E extends Entity> {
 
 	public abstract E selectById(int id) throws DAOException;
 	
-	protected void closeConnection(Connection connection,
+	protected static void closeConnection(Connection connection,
 			java.sql.PreparedStatement statement, ResultSet rs)
 			throws ConnectionPoolException {
 		ConnectionPool.getInstance().closeConnection(connection, statement, rs);

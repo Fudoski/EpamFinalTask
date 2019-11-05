@@ -20,4 +20,14 @@ public class UserService {
 		return null;
 	}
 
+	public static int getUserType(User user) {
+		try {
+			UserDAO userDAO = (UserDAO) MySQLDAOFactory.getInstance().getDao(User.class);
+			int type = UserDAO.getUserType(user);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}	
+		return 0;
+	}
+
 }

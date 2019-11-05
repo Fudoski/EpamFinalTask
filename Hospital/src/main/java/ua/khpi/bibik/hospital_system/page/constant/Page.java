@@ -7,5 +7,6 @@ public final class Page {
 	}
 	
 	public static final String LOGIN = "path.page.login";
+	public static final String ADMIN = "path.page.admin";
 
 }

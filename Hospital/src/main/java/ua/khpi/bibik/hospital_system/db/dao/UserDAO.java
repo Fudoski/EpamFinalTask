@@ -67,8 +67,35 @@ public class UserDAO extends AbstractDAO<User> {
 
 	@Override
 	public User selectById(int id) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated meethod stub
 		return null;
+	}
+
+	public static int getUserType(User user) throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String sql = SQLQuery.SELECT_USER_TYPE;
+		try {
+			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			connection = connectionPool.takeConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, user.getId());;
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				int type= resultSet.getInt(SQLField.USER_TYPE_ID);
+				return type;
+			}
+		}catch (SQLException | ConnectionPoolException e) {
+			throw new DAOException();
+		} finally {
+			try {
+				closeConnection(connection, statement, resultSet);
+			}catch (ConnectionPoolException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
 	}
 
 }
