@@ -15,24 +15,36 @@ import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 import ua.khpi.bibik.hospital_system.page.constant.Redirect;
 
 public class UserFilter extends AbstractFilter {
-
+	HttpServletRequest req;
+	HttpServletResponse res;
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		String url = Redirect.getUrl(req, Redirect.ROOT);
-		if (isUserExists(req) | isRootOrLoginPage(req)) {
+		req = (HttpServletRequest) request;
+		res = (HttpServletResponse) response;
+		
+		if (isStyleResourceRequest()) {
 			chain.doFilter(request, response);
-		} else {
-			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-			httpServletResponse.sendRedirect(url);
+			return;
+		}
+		
+		boolean loginOrRoot = isRootOrLoginPage();
+		boolean userExists = isUserExists();
+		String url = Redirect.getUrl(req, Redirect.ROOT);
+		
+		if (userExists && loginOrRoot) {
+			res.sendRedirect(Redirect.getUrl(req, Redirect.HOME));
+		} else if (userExists | loginOrRoot) {
+			chain.doFilter(request, response);
+		}else {
+			res.sendRedirect(url);
 		}
 	}
 
-	private boolean isUserExists(HttpServletRequest request) {
+	private boolean isUserExists() {
 		boolean exists = false;
 
-		HttpSession httpSession = request.getSession(false);
+		HttpSession httpSession = req.getSession(false);
 
 		if (httpSession != null) {
 			User user = (User) httpSession.getAttribute(Attribute.USER);
@@ -42,14 +54,19 @@ public class UserFilter extends AbstractFilter {
 		return exists;
 	}
 
-	private boolean isRootOrLoginPage(HttpServletRequest request) {
-		String requestURI = request.getRequestURI();
+	private boolean isRootOrLoginPage() {
+		String requestURI = req.getRequestURI();
 		
-		String rootUrl = Redirect.getUrl(request, Redirect.ROOT);
-		String loginUrl = Redirect.getUrl(request, "/login");
+		String rootUrl = Redirect.getUrl(req, Redirect.ROOT);
+		String loginUrl = Redirect.getUrl(req, "/login");
 		
 		return requestURI.equals(rootUrl) | requestURI.equals(loginUrl);
 
+	}
+	
+	private boolean isStyleResourceRequest() {
+		String resourceURI = req.getRequestURI().replace(req.getContextPath(), "");
+		return resourceURI.startsWith("/resource/");
 	}
 
 }

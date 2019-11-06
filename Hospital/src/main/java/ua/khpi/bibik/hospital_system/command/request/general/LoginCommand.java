@@ -17,26 +17,29 @@ import ua.khpi.bibik.hospital_system.service.UserService;
 
 public class LoginCommand extends RequestCommand {
 
+	String login;
+	String password;
+	User user;
+
 	@Override
 	public void execute() throws CommandException, ServletException, IOException {
-		String login = request.getParameter(Parameter.LOGIN);
-		String password = request.getParameter(Parameter.PASSWORD);
+		login = request.getParameter(Parameter.LOGIN);
+		password = request.getParameter(Parameter.PASSWORD);
 
-		User user = UserService.getUserByLogin(login);
+		user = UserService.getUserByLogin(login);
 
-		if (user.getId() != 0) {
+		if (user != null && user.getId() != 0) {
 			String passwordHash = HashConverter.sha256(password);
 
 			if (passwordHash.equals(user.getPassword())) {
-				checkUserPrivileges(user);
-			} else {
-				response.sendRedirect("/");
+				checkUserPrivileges();
 			}
+		} else {
+			response.sendRedirect(Redirect.getUrl(request, Redirect.ROOT));
 		}
-
 	}
 
-	private void checkUserPrivileges(User user) throws ServletException, IOException, CommandException {
+	private void checkUserPrivileges() throws ServletException, IOException, CommandException {
 
 		int type = UserService.getUserType(user);
 		UserType userType = UserType.getType(type);
@@ -45,10 +48,10 @@ public class LoginCommand extends RequestCommand {
 		session.setAttribute(Attribute.USER, user);
 		switch (userType) {
 		case ADMIN:
-			session.setAttribute(Attribute.USER_TYPE, user.toString());
+			session.setAttribute(Attribute.USER_TYPE, userType.toString());
 			break;
 		}
-		
+
 		String url = Redirect.getUrl(request, Redirect.HOME);
 		response.sendRedirect(url);
 

@@ -6,7 +6,7 @@ public class Attribute {
 	
 	public static final String USER_TYPE = "usertype";
 	
-	public static final String USER_TYPE_ADMIN = "admin";
+	public static final String USER_TYPE_ADMIN = "ADMIN";
 	
 
 }
