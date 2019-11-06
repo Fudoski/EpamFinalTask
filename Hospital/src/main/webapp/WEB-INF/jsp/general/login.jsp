@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Hospital: Authorization</title>
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="./bootstrap/bootstrap.css"/>
 </head>
 <body>
 	<header> </header>

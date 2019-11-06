@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
 import ua.khpi.bibik.hospital_system.command.request.UnknownCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.LoginCommand;
+import ua.khpi.bibik.hospital_system.command.request.general.ShowHomePageCommand;
 
 public class CommandFactory {
 	
@@ -18,6 +19,7 @@ public class CommandFactory {
 	private CommandFactory() {
 		commands = new HashMap<String, RequestCommand>();
 		commands.put("POST/login", new LoginCommand());
+		commands.put("GET/home", new ShowHomePageCommand());
 	}
 
 	public static CommandFactory getInstanse() {

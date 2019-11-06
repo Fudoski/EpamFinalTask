@@ -3,26 +3,19 @@ package ua.khpi.bibik.hospital_system.command.request.general;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import ua.khpi.bibik.hospital_system.command.exception.CommandException;
 import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
 import ua.khpi.bibik.hospital_system.entity.user.User;
+import ua.khpi.bibik.hospital_system.entity.user.UserType;
 import ua.khpi.bibik.hospital_system.hash.HashConverter;
-import ua.khpi.bibik.hospital_system.page.constant.Page;
+import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 import ua.khpi.bibik.hospital_system.page.constant.Parameter;
-import ua.khpi.bibik.hospital_system.page.resource.AppConfigReader;
+import ua.khpi.bibik.hospital_system.page.constant.Redirect;
 import ua.khpi.bibik.hospital_system.service.UserService;
 
 public class LoginCommand extends RequestCommand {
-
-	private enum USER_TYPE {
-
-		ADMIN;
-
-		public static USER_TYPE getType(int index) {
-			return USER_TYPE.values()[index];
-		}
-	}
 
 	@Override
 	public void execute() throws CommandException, ServletException, IOException {
@@ -46,15 +39,18 @@ public class LoginCommand extends RequestCommand {
 	private void checkUserPrivileges(User user) throws ServletException, IOException, CommandException {
 
 		int type = UserService.getUserType(user);
-		USER_TYPE userType = USER_TYPE.getType(type);
+		UserType userType = UserType.getType(type);
 
+		HttpSession session = request.getSession();
+		session.setAttribute(Attribute.USER, user);
 		switch (userType) {
-		
 		case ADMIN:
-			forward(AppConfigReader.getInstance().getProperty(Page.ADMIN));
+			session.setAttribute(Attribute.USER_TYPE, user.toString());
 			break;
-
 		}
+		
+		String url = Redirect.getUrl(request, Redirect.HOME);
+		response.sendRedirect(url);
 
 	}
 

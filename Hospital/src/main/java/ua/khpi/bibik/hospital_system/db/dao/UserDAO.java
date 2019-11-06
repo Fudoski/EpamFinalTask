@@ -71,7 +71,7 @@ public class UserDAO extends AbstractDAO<User> {
 		return null;
 	}
 
-	public static int getUserType(User user) throws DAOException {
+	public int getUserType(User user) throws DAOException {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
