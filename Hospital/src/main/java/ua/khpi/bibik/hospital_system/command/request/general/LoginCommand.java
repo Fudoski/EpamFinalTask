@@ -48,7 +48,13 @@ public class LoginCommand extends RequestCommand {
 		session.setAttribute(Attribute.USER, user);
 		switch (userType) {
 		case ADMIN:
-			session.setAttribute(Attribute.USER_TYPE, userType.toString());
+			session.setAttribute(Attribute.USER_TYPE, Attribute.USER_TYPE_ADMIN);
+			break;
+		case DOCTOR:
+			session.setAttribute(Attribute.USER_TYPE, Attribute.USER_TYPE_DOCTOR);
+			break;
+		case PATIENT:
+			session.setAttribute(Attribute.USER_TYPE, Attribute.USER_TYPE_PATIENT);
 			break;
 		}
 

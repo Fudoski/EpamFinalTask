@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Hospital: main page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>HOME PAGE</h1>
+a patient's page
 </body>
 </html>

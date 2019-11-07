@@ -26,6 +26,12 @@ public class ShowHomePageCommand extends RequestCommand {
 		case Attribute.USER_TYPE_ADMIN:
 			jsp = configReader.getProperty(Page.ADMIN);
 			break;
+		case Attribute.USER_TYPE_DOCTOR:
+			jsp = configReader.getProperty(Page.DOCTOR);
+			break;
+		case Attribute.USER_TYPE_PATIENT:
+			jsp = configReader.getProperty(Page.PATIENT);
+			break;
 		}
 		
 		forward(jsp);
