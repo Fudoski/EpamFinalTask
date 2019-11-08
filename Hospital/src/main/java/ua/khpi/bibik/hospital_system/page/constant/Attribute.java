@@ -11,6 +11,8 @@ public class Attribute {
 	public static final String USER_TYPE_DOCTOR = "doctor";
 
 	public static final String USER_TYPE_PATIENT = "patient";
+
+	public static final String DOCTOR_LIST = "doctorlist";
 	
 
 }

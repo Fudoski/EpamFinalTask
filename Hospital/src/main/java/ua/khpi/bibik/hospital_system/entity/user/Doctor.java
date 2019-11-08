@@ -1,23 +1,24 @@
 package ua.khpi.bibik.hospital_system.entity.user;
 
 public class Doctor extends User {
-	private int doctorSpecialisation;
+	private String doctorSpecialisation;
 
 	public Doctor() {
 		super();
 	}
 
-	public Doctor(int doctorSpecialisation) {
+	public Doctor(String doctorSpecialisation) {
 		super();
 		this.doctorSpecialisation = doctorSpecialisation;
 	}
 
-	public int getDoctorSpecialisation() {
+	public String getDoctorSpecialisation() {
 		return doctorSpecialisation;
 	}
 
-	public void setDoctorSpecialisation(int doctorSpecialisation) {
+	public void setDoctorSpecialisation(String doctorSpecialisation) {
 		this.doctorSpecialisation = doctorSpecialisation;
 	}
+
 
 }

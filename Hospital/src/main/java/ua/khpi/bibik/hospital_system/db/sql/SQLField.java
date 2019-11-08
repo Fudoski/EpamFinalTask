@@ -11,6 +11,8 @@ public final class SQLField {
 	public static final String USER_PHONE_NUM = "phone_num";
 	
 	public static final String USER_TYPE = "type";
+	
+	public static final String DOCTOR_SPEC = "spec";
 
 	private SQLField() {
 		// empty

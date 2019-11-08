@@ -5,22 +5,26 @@ import java.util.Map;
 
 import ua.khpi.bibik.hospital_system.controller.AdminUserController;
 import ua.khpi.bibik.hospital_system.controller.UserController;
-import ua.khpi.bibik.hospital_system.entity.user.Administrator;
-import ua.khpi.bibik.hospital_system.entity.user.User;
+import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 
 public class UserControllerFactory {
 	
-	private Map<Class<? extends User>, UserController> controllers;
+	private Map<String, UserController> controllers;
 	
 	private UserControllerFactory() {
-		controllers = new HashMap<Class<? extends User>, UserController>();
-		controllers.put(Administrator.class, new AdminUserController());
+		controllers = new HashMap<String, UserController>();
+		controllers.put(Attribute.USER_TYPE_ADMIN, new AdminUserController());
 	}
 	
 	private static final UserControllerFactory instanse = new UserControllerFactory(); 
 
 	public static UserControllerFactory getInstanse() {
 		return instanse;
+	}
+
+	public UserController getController(String userType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

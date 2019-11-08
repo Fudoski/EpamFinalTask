@@ -14,6 +14,7 @@ public class AdministratorService {
 		MySQLDAOFactory factory = MySQLDAOFactory.getInstance();
 		try {
 			DoctorDAO dao = (DoctorDAO) factory.getDao(Doctor.class);
+			doctors = dao.select(null);
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

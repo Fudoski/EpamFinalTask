@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import ua.khpi.bibik.hospital_system.command.exception.CommandException;
 import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
+import ua.khpi.bibik.hospital_system.controller.UserController;
+import ua.khpi.bibik.hospital_system.controller.factory.UserControllerFactory;
 import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 import ua.khpi.bibik.hospital_system.page.constant.Page;
 import ua.khpi.bibik.hospital_system.page.resource.AppConfigReader;
@@ -21,19 +23,10 @@ public class ShowHomePageCommand extends RequestCommand {
 		
 		
 		String userType = getUserType(request);
+		UserControllerFactory factory = UserControllerFactory.getInstanse();
+		UserController controller = factory.getController(userType);
 		
-		switch(userType) {
-		
-		case Attribute.USER_TYPE_ADMIN:
-			jsp = configReader.getProperty(Page.ADMIN);
-			break;
-		case Attribute.USER_TYPE_DOCTOR:
-			jsp = configReader.getProperty(Page.DOCTOR);
-			break;
-		case Attribute.USER_TYPE_PATIENT:
-			jsp = configReader.getProperty(Page.PATIENT);
-			break;
-		}
+		jsp = controller.process(request, response);
 		
 		forward(jsp);
 	}
