@@ -23,8 +23,7 @@ public class UserControllerFactory {
 	}
 
 	public UserController getController(String userType) {
-		// TODO Auto-generated method stub
-		return null;
+		return controllers.get(userType);
 	}
 	
 	

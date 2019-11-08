@@ -2,6 +2,7 @@ package ua.khpi.bibik.hospital_system.entity.user;
 
 public class Doctor extends User {
 	private String doctorSpecialisation;
+	private int amountOfPatients;
 
 	public Doctor() {
 		super();
@@ -20,5 +21,18 @@ public class Doctor extends User {
 		this.doctorSpecialisation = doctorSpecialisation;
 	}
 
+	public int getAmountOfPatients() {
+		return amountOfPatients;
+	}
 
+	public void setAmountOfPatients(int amountOfPatients) {
+		this.amountOfPatients = amountOfPatients;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor [doctorSpecialisation=" + doctorSpecialisation + ", amountOfPatients=" + amountOfPatients + "]";
+	}
+	
+	
 }

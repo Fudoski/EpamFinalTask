@@ -52,9 +52,8 @@ public class DoctorDAO extends AbstractDAO<Doctor> {
 			ConnectionPool connectionPool = ConnectionPool.getInstance();
 			connection = connectionPool.takeConnection();
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, entity.getLogin());
 			resultSet = statement.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				Doctor doctor = new Doctor();
 				doctor.setId(resultSet.getInt(SQLField.USER_ID));
 				doctor.setLogin(resultSet.getString(SQLField.USER_LOGIN));
@@ -63,8 +62,8 @@ public class DoctorDAO extends AbstractDAO<Doctor> {
 				doctor.setMname(resultSet.getString(SQLField.USER_MIDDLENAME));
 				doctor.setSname(resultSet.getString(SQLField.USER_SURNAME));
 				doctor.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
-				doctor.setType(resultSet.getString(SQLField.USER_TYPE));
 				doctor.setDoctorSpecialisation(resultSet.getString(SQLField.DOCTOR_SPEC));
+				doctor.setAmountOfPatients(resultSet.getInt(SQLField.DOCTOR_PATIENTS));
 				doctors.add(doctor);
 			}
 		} catch (SQLException | ConnectionPoolException e) {
