@@ -5,9 +5,11 @@ import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
 import ua.khpi.bibik.hospital_system.db.dao.AbstractDAO;
+import ua.khpi.bibik.hospital_system.db.dao.DoctorDAO;
 import ua.khpi.bibik.hospital_system.db.dao.PatientDAO;
 import ua.khpi.bibik.hospital_system.db.dao.UserDAO;
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
+import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
 import ua.khpi.bibik.hospital_system.entity.user.User;
 
@@ -37,6 +39,7 @@ public class MySQLDAOFactory implements DAOFactory {
 		
 		creators.put(Patient.class, () -> new PatientDAO());
 		creators.put(User.class, () -> new UserDAO());
+		creators.put(Doctor.class, () -> new DoctorDAO());
 	}
 
 	public static MySQLDAOFactory getInstance() {

@@ -1,4 +1,4 @@
-package ua.khpi.bibik.hospital_system.servlet.controller;
+package ua.khpi.bibik.hospital_system.controller.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

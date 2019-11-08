@@ -10,8 +10,7 @@ public final class SQLField {
 	public static final String USER_MIDDLENAME = "mname";
 	public static final String USER_PHONE_NUM = "phone_num";
 	
-	
-	public static final String USER_TYPE_ID = "user_type_id";
+	public static final String USER_TYPE = "type";
 
 	private SQLField() {
 		// empty

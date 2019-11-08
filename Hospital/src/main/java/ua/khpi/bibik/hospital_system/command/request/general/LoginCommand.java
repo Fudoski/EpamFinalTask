@@ -41,8 +41,7 @@ public class LoginCommand extends RequestCommand {
 
 	private void checkUserPrivileges() throws ServletException, IOException, CommandException {
 
-		int type = UserService.getUserType(user);
-		UserType userType = UserType.getType(type);
+		UserType userType = UserType.valueOf(user.getType().toUpperCase());
 
 		HttpSession session = request.getSession();
 		session.setAttribute(Attribute.USER, user);

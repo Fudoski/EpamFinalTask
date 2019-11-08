@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 
 import ua.khpi.bibik.hospital_system.db.connectionpool.ConnectionPool;
 import ua.khpi.bibik.hospital_system.db.connectionpool.exception.ConnectionPoolException;
@@ -30,7 +32,7 @@ public class UserDAO extends AbstractDAO<User> {
 	}
 
 	@Override
-	public User find(User entity) throws DAOException {
+	public List<User> select(User entity) throws DAOException {
 		User user = null;
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -52,6 +54,7 @@ public class UserDAO extends AbstractDAO<User> {
 				user.setMname(resultSet.getString(SQLField.USER_MIDDLENAME));
 				user.setSname(resultSet.getString(SQLField.USER_SURNAME));
 				user.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
+				user.setType(resultSet.getString(SQLField.USER_TYPE));
 			}
 		}catch (SQLException | ConnectionPoolException e) {
 			throw new DAOException();
@@ -62,40 +65,13 @@ public class UserDAO extends AbstractDAO<User> {
 				e.printStackTrace();
 			}
 		}
-		return user;
+		return Collections.singletonList(user);
 	}
 
 	@Override
 	public User selectById(int id) {
 		// TODO Auto-generated meethod stub
 		return null;
-	}
-
-	public int getUserType(User user) throws DAOException {
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		String sql = SQLQuery.SELECT_USER_TYPE;
-		try {
-			ConnectionPool connectionPool = ConnectionPool.getInstance();
-			connection = connectionPool.takeConnection();
-			statement = connection.prepareStatement(sql);
-			statement.setInt(1, user.getId());;
-			resultSet = statement.executeQuery();
-			if (resultSet.next()) {
-				int type= resultSet.getInt(SQLField.USER_TYPE_ID);
-				return type;
-			}
-		}catch (SQLException | ConnectionPoolException e) {
-			throw new DAOException();
-		} finally {
-			try {
-				closeConnection(connection, statement, resultSet);
-			}catch (ConnectionPoolException e) {
-				e.printStackTrace();
-			}
-		}
-		return 0;
 	}
 
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 	<filter>
@@ -28,7 +27,7 @@
 		<servlet-name>FrontServletController</servlet-name>
 		<display-name>FrontServletController</display-name>
 		<description>Process all request</description>
-		<servlet-class>ua.khpi.bibik.hospital_system.servlet.controller.FrontServletController</servlet-class>
+		<servlet-class>ua.khpi.bibik.hospital_system.controller.servlet.FrontServletController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FrontServletController</servlet-name>
@@ -53,7 +52,9 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.map</url-pattern>
 	</servlet-mapping>
-	
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/jsp/general/login.jsp</welcome-file>
 	</welcome-file-list>

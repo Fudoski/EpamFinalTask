@@ -19,6 +19,7 @@ public class ShowHomePageCommand extends RequestCommand {
 		AppConfigReader configReader = AppConfigReader.getInstance();
 		String jsp = null;
 		
+		
 		String userType = getUserType(request);
 		
 		switch(userType) {

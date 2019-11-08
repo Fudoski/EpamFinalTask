@@ -3,36 +3,36 @@ package ua.khpi.bibik.hospital_system.db.dao;
 import java.util.List;
 
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
-import ua.khpi.bibik.hospital_system.entity.user.Patient;
+import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 
-public class PatientDAO extends AbstractDAO<Patient> {
+public class DoctorDAO extends AbstractDAO<Doctor> {
 
 	@Override
-	public Patient insert(Patient entity) {
+	public Doctor insert(Doctor entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Patient update(Patient entity) {
+	public Doctor update(Doctor entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Patient delete(Patient entity) {
+	public Doctor delete(Doctor entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Patient> select(Patient entity) throws DAOException {
+	public Doctor selectById(int id) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Patient selectById(int id) {
+	public List<Doctor> select(Doctor entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

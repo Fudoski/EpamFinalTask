@@ -7,6 +7,7 @@ public class User extends Entity {
 	protected String login;
 	protected String password;
 	protected String name;
+	protected String type;
 
 	/**
 	 * user surname
@@ -71,6 +72,14 @@ public class User extends Entity {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Override
 	public int hashCode() {
@@ -117,8 +126,10 @@ public class User extends Entity {
 
 	@Override
 	public String toString() {
-		return "User [login=" + login + ", password=" + password + ", name=" + name + ", sname=" + sname + ", mname="
-				+ mname + ", phoneNum=" + phoneNum + ", id=" + id + "]";
+		return "User [login=" + login + ", password=" + password + ", name=" + name + ", type=" + type + ", sname="
+				+ sname + ", mname=" + mname + ", phoneNum=" + phoneNum + "]";
 	}
+
+	
 
 }
