@@ -48,7 +48,7 @@
 					<div id="container" class="container">
 						<div class="row">
 							<div class="col-sm-6 offset-sm-3">
-								<h1 class="display-4">Patient info</h1>
+								<h1 class="display-4">Doctor info</h1>
 								<div class="info-form">
 									<form class="form-inlin justify-content-center" action="newUser" method="post">
 										<div class="form-group">
@@ -95,22 +95,28 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="control-label col-sm" for="phone">Phone:</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="phone"
+												placeholder="Enter patient phone" name="phone" required="required" 
+												data-toggle="tooltip" name="spec" id="spec" data-placement="top" title="Enter doctor phone number"/>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-sm" for="spec">spec:</label>
 											<div class="col-sm-10">
 												<select class="custom-select" required="required" data-toggle="tooltip" name="spec" id="spec" data-placement="top" title="Choose doctor specialization">
 													<option value="" disabled selected >Choose specialization</option>
-													<option value="1">Option 1</option>
-													<option value="2">Option 2</option>
-													<option value="3">Option 3</option>
 													<c:forEach items="${speclist}" var="spec">
-														<option value="${spec.id}">${spec.name}></option>
+														<option value="${spec.id}">${spec.name}</option>
 													</c:forEach>
 												</select>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
-												<button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Enter user birthday">Submit</button>
+												<input type="hidden" class="hide" name="usertype" value="doctor"/>
+												<button type="submit" class="btn btn-primary">Submit</button>
 											</div>
 										</div>
 									</form>

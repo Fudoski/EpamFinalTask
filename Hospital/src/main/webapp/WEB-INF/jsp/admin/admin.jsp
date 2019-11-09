@@ -83,7 +83,7 @@
 								<td>${doc.name}</td>
 								<td>${doc.sname}</td>
 								<td>${doc.mname}</td>
-								<td>${doc.doctorSpecialisation}</td>
+								<td>${doc.doctorSpecialisation.name}</td>
 								<td>${doc.phoneNum}</td>
 								<td>${doc.amountOfPatients}</td>
 								<td><button type="button"

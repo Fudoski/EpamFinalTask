@@ -12,14 +12,45 @@ import ua.khpi.bibik.hospital_system.db.connectionpool.exception.ConnectionPoolE
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
 import ua.khpi.bibik.hospital_system.db.sql.SQLField;
 import ua.khpi.bibik.hospital_system.db.sql.SQLQuery;
+import ua.khpi.bibik.hospital_system.entity.DoctorSpecialization;
 import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 
 public class DoctorDAO extends AbstractDAO<Doctor> {
 
 	@Override
-	public Doctor insert(Doctor entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Doctor insert(Doctor doctor) throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String sql = SQLQuery.ADD_NEW_DOC;
+		try {
+			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			connection = connectionPool.takeConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, doctor.getLogin());
+			statement.setString(2, doctor.getPassword());
+			statement.setString(3, doctor.getName());
+			statement.setString(4, doctor.getSname());
+			statement.setString(5, doctor.getMname());
+			statement.setString(6, doctor.getPhoneNum());
+			statement.setInt(7, doctor.getDoctorSpecialisation().getId());
+			statement.setString(8, doctor.getDob());
+			int rows = statement.executeUpdate();
+			
+			if (rows != 1) {
+				
+			}
+			
+		} catch (SQLException | ConnectionPoolException e) {
+			throw new DAOException();
+		} finally {
+			try {
+				closeConnection(connection, statement, resultSet);
+			} catch (ConnectionPoolException e) {
+				e.printStackTrace();
+			}
+		}
+		return doctor;
 	}
 
 	@Override
@@ -62,12 +93,14 @@ public class DoctorDAO extends AbstractDAO<Doctor> {
 				doctor.setMname(resultSet.getString(SQLField.USER_MIDDLENAME));
 				doctor.setSname(resultSet.getString(SQLField.USER_SURNAME));
 				doctor.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
-				doctor.setDoctorSpecialisation(resultSet.getString(SQLField.DOCTOR_SPEC));
+				DoctorSpecialization spec = new DoctorSpecialization();
+				spec.setName(resultSet.getString(SQLField.DOCTOR_SPEC));
+				doctor.setDoctorSpecialisation(spec);
 				doctor.setAmountOfPatients(resultSet.getInt(SQLField.DOCTOR_PATIENTS));
 				doctors.add(doctor);
 			}
 		} catch (SQLException | ConnectionPoolException e) {
-			throw new DAOException();
+			throw new DAOException(e);
 		} finally {
 			try {
 				closeConnection(connection, statement, resultSet);

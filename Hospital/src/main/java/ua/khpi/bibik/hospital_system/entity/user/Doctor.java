@@ -1,38 +1,36 @@
 package ua.khpi.bibik.hospital_system.entity.user;
 
+import ua.khpi.bibik.hospital_system.entity.DoctorSpecialization;
+
 public class Doctor extends User {
-	private String doctorSpecialisation;
+	private DoctorSpecialization doctorSpecialisation;
 	private int amountOfPatients;
 
 	public Doctor() {
 		super();
-	}
-
-	public Doctor(String doctorSpecialisation) {
-		super();
-		this.doctorSpecialisation = doctorSpecialisation;
+		doctorSpecialisation = new DoctorSpecialization();
 	}
 
 	public int getAmountOfPatients() {
 		return amountOfPatients;
 	}
 
-	public String getDoctorSpecialisation() {
-		return doctorSpecialisation;
-	}
-
 	public void setAmountOfPatients(int amountOfPatients) {
 		this.amountOfPatients = amountOfPatients;
 	}
 
-	public void setDoctorSpecialisation(String doctorSpecialisation) {
+	public DoctorSpecialization getDoctorSpecialisation() {
+		return doctorSpecialisation;
+	}
+
+	public void setDoctorSpecialisation(DoctorSpecialization doctorSpecialisation) {
 		this.doctorSpecialisation = doctorSpecialisation;
 	}
 
 	@Override
 	public String toString() {
-		return "Doctor [doctorSpecialisation=" + doctorSpecialisation + ", amountOfPatients=" + amountOfPatients + "]";
+		return "Doctor [doctorSpecialisation=" + doctorSpecialisation + ", amountOfPatients=" + amountOfPatients
+				+ ", name=" + name + ", sname=" + sname + ", mname=" + mname + ", id=" + id + "]";
 	}
-	
-	
+
 }

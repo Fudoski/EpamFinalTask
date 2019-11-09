@@ -16,7 +16,10 @@ public class CreateNewUserCommand extends RequestCommand {
 	public void execute() throws CommandException, ServletException, IOException {
 		String userType = getUserType(request);
 		UserController controller = getController(userType);
-		
+		if (!Attribute.USER_TYPE_ADMIN.equals(userType)) {
+			response.sendRedirect(Redirect.getUrl(request, Redirect.HOME));
+			return;
+		}
 		request.setAttribute(Attribute.CONTROLL_PROCESS, Attribute.CONTROLL_PROCESS_CREATE );
 		String jsp = controller.process(request, response);
 		if (jsp == null) {

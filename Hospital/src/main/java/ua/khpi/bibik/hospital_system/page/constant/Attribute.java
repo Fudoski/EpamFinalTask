@@ -23,6 +23,10 @@ public class Attribute {
 	public static final String USER_TYPE_PATIENT = "patient";
 
 	public static final String DOCTOR_SPEC_LIST = "speclist";
+
+	public static final String DOCTOR = "doc";
+
+	public static final String CONTROLL_PROCESS_SUBMIT = "submit";
 	
 
 }

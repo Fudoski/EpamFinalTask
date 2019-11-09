@@ -29,7 +29,7 @@ public class AdministratorService {
 		MySQLDAOFactory factory = MySQLDAOFactory.getInstance();
 		try {
 			PatientDAO dao = (PatientDAO) factory.getDao(Patient.class);
-			patients = dao.select(null);
+			patients = dao.select(new Patient());
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
