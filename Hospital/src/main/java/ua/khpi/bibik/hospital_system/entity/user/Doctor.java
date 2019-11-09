@@ -13,20 +13,20 @@ public class Doctor extends User {
 		this.doctorSpecialisation = doctorSpecialisation;
 	}
 
-	public String getDoctorSpecialisation() {
-		return doctorSpecialisation;
-	}
-
-	public void setDoctorSpecialisation(String doctorSpecialisation) {
-		this.doctorSpecialisation = doctorSpecialisation;
-	}
-
 	public int getAmountOfPatients() {
 		return amountOfPatients;
 	}
 
+	public String getDoctorSpecialisation() {
+		return doctorSpecialisation;
+	}
+
 	public void setAmountOfPatients(int amountOfPatients) {
 		this.amountOfPatients = amountOfPatients;
+	}
+
+	public void setDoctorSpecialisation(String doctorSpecialisation) {
+		this.doctorSpecialisation = doctorSpecialisation;
 	}
 
 	@Override

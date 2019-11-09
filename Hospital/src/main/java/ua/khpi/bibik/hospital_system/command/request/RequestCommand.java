@@ -7,11 +7,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ua.khpi.bibik.hospital_system.command.Command;
 import ua.khpi.bibik.hospital_system.command.exception.CommandException;
 import ua.khpi.bibik.hospital_system.command.exception.CommandNotImplimentedException;
 import ua.khpi.bibik.hospital_system.command.exception.CommandNotInitializedException;
+import ua.khpi.bibik.hospital_system.controller.UserController;
+import ua.khpi.bibik.hospital_system.controller.factory.UserControllerFactory;
+import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 
 public class RequestCommand implements Command {
 
@@ -39,9 +43,25 @@ public class RequestCommand implements Command {
 		getDispatcher(target).include(request, response);
 	}
 
-	public void forward(String target) throws ServletException, IOException, CommandException {
+	protected void forward(String target) throws ServletException, IOException, CommandException {
 		check();
 		getDispatcher(target).forward(request, response);
+	}
+	
+	protected String getUserType(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		String type = null;
+		if (session != null) {
+			type = (String) session.getAttribute(Attribute.USER_TYPE);
+		}
+		return type;
+	}
+	
+	protected UserController getController(String userType) {
+		UserControllerFactory factory = UserControllerFactory.getInstanse();
+		UserController controller = factory.getController(userType);
+		return controller;
+		
 	}
 
 	private RequestDispatcher getDispatcher(String target) {

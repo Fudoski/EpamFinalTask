@@ -12,51 +12,45 @@ import ua.khpi.bibik.hospital_system.db.connectionpool.exception.ConnectionPoolE
 import ua.khpi.bibik.hospital_system.db.dao.exception.DAOException;
 import ua.khpi.bibik.hospital_system.db.sql.SQLField;
 import ua.khpi.bibik.hospital_system.db.sql.SQLQuery;
-import ua.khpi.bibik.hospital_system.entity.user.Patient;
+import ua.khpi.bibik.hospital_system.entity.DoctorSpecialization;
 
-public class PatientDAO extends AbstractDAO<Patient> {
+public class DoctorSpecializationDAO extends AbstractDAO<DoctorSpecialization> {
 
 	@Override
-	public Patient insert(Patient entity) {
+	public DoctorSpecialization insert(DoctorSpecialization entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Patient update(Patient entity) {
+	public DoctorSpecialization update(DoctorSpecialization entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Patient delete(Patient entity) {
+	public DoctorSpecialization delete(DoctorSpecialization entity) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Patient> select(Patient entity) throws DAOException {
-		List<Patient> patients = new ArrayList<Patient>();
+	public List<DoctorSpecialization> select(DoctorSpecialization entity) throws DAOException {
+		List<DoctorSpecialization> specializations = new ArrayList<DoctorSpecialization>();
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		String sql = SQLQuery.SELECT_ALL_PATIENTS;
+		String sql = SQLQuery.SELECT_ALL_DOCTOR_SPEC;
 		try {
 			ConnectionPool connectionPool = ConnectionPool.getInstance();
 			connection = connectionPool.takeConnection();
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				Patient patient = new Patient();
-				patient.setId(resultSet.getInt(SQLField.USER_ID));
-				patient.setLogin(resultSet.getString(SQLField.USER_LOGIN));
-				patient.setPassword(resultSet.getString(SQLField.USER_PASSWORD));
-				patient.setName(resultSet.getString(SQLField.USER_NAME));
-				patient.setMname(resultSet.getString(SQLField.USER_MIDDLENAME));
-				patient.setSname(resultSet.getString(SQLField.USER_SURNAME));
-				patient.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
-				patient.setDob(resultSet.getString(SQLField.USER_DOB));
-				patients.add(patient);
+				DoctorSpecialization spec = new DoctorSpecialization();
+				spec.setId(resultSet.getInt(SQLField.DOCTOR_SPEC_ID));
+				spec.setName(resultSet.getString(SQLField.DOCTOR_SPEC_NAME));
+				specializations.add(spec);
 			}
 		} catch (SQLException | ConnectionPoolException e) {
 			throw new DAOException();
@@ -67,11 +61,12 @@ public class PatientDAO extends AbstractDAO<Patient> {
 				e.printStackTrace();
 			}
 		}
-		return patients;
+
+		return specializations;
 	}
 
 	@Override
-	public Patient selectById(int id) {
+	public DoctorSpecialization selectById(int id) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

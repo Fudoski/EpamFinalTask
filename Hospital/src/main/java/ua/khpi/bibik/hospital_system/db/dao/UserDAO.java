@@ -55,6 +55,7 @@ public class UserDAO extends AbstractDAO<User> {
 				user.setSname(resultSet.getString(SQLField.USER_SURNAME));
 				user.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
 				user.setType(resultSet.getString(SQLField.USER_TYPE));
+				user.setDob(resultSet.getString(SQLField.USER_DOB));
 			}
 		}catch (SQLException | ConnectionPoolException e) {
 			throw new DAOException();

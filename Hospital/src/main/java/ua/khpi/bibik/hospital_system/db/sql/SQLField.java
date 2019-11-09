@@ -13,7 +13,10 @@ public final class SQLField {
 	public static final String USER_TYPE = "type";
 	
 	public static final String DOCTOR_SPEC = "spec";
+	public static final String DOCTOR_SPEC_ID = "id";
+	public static final String DOCTOR_SPEC_NAME = "name";
 	public static final String DOCTOR_PATIENTS = "patients";
+	public static final String USER_DOB = "dob";
 
 	private SQLField() {
 		// empty

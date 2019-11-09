@@ -24,10 +24,10 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto ">
-							<li class="nav-item active"><a class="nav-link" href="#">Doctors
-								<span class="sr-only">(current)</span>
+							<li class="nav-item "><a class="nav-link" href="home">Doctors
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="patients">Patients
+							<li class="nav-item active"><a class="nav-link" href="#">Patients
+							<span class="sr-only">(current)</span>
 							</a></li>
 						</ul>
 						<form class="form-inline my-2 my-lg-0" action="logout" method="post">
@@ -47,16 +47,14 @@
 							class="btn btn-info dropdown-toggle dropdown-toggle-split"
 							style="border-radius: 0px" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"></button>
-							<form action="home" method="get">
+							<form action="patients" method="get">
 								<div class="dropdown-menu">
 								<button class="dropdown-item ${empty sort or sort eq 'alphabet'? 'text-info':'' }" type="submit" name="sort" value="alphabet">Alphabet</button>
-								<button class="dropdown-item ${sort eq 'spec'? 'text-info': ''}" type="submit" name="sort" value="spec">Specialization</button>
-								<button class="dropdown-item ${sort eq 'patients'? 'text-info': ''}" type="submit" name="sort" value="patients">Patients</button>
 							</div>
 							</form>
 						</div>
 						<form action="newUser" method="get" class="form-inline">
-							<input type="hidden" class="hide" name="usertype" value="doctor"/>
+							<input type="hidden" class="hide" name="usertype" value="patient"/>
 							<input type="submit" class="btn btn-success" style="border-radius: 0px" value="Register new"/>
 						</form>
 					</div>
@@ -69,23 +67,21 @@
 								<th scope="col">Name</th>
 								<th scope="col">Surname</th>
 								<th scope="col">Middlename</th>
-								<th scope="col">Specialization</th>
+								<th scope="col">Day of birth</th>
 								<th scope="col">Phone</th>
-								<th scope="col">Patiens</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:set var="i" value="1" />
-							<c:forEach items="${doctorlist}" var="doc">
+							<c:forEach items="${patientlist}" var="p">
 							<tr>
 								<th scope="row"><c:out value="${i}" /></th>
-								<td>${doc.name}</td>
-								<td>${doc.sname}</td>
-								<td>${doc.mname}</td>
-								<td>${doc.doctorSpecialisation}</td>
-								<td>${doc.phoneNum}</td>
-								<td>${doc.amountOfPatients}</td>
+								<td>${p.name}</td>
+								<td>${p.sname}</td>
+								<td>${p.mname}</td>
+								<td>${p.dob}</td>
+								<td>${p.phoneNum}</td>
 								<td><button type="button"
 								class="btn btn-outline-dark btn-block">Edit</button></td>
 							</tr>

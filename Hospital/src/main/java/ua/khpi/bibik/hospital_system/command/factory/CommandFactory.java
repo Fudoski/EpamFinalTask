@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import ua.khpi.bibik.hospital_system.command.request.RequestCommand;
 import ua.khpi.bibik.hospital_system.command.request.UnknownCommand;
+import ua.khpi.bibik.hospital_system.command.request.admin.CreateNewUserCommand;
+import ua.khpi.bibik.hospital_system.command.request.admin.SubmitUserCreateCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.LogOutCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.LoginCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.ShowHomePageCommand;
+import ua.khpi.bibik.hospital_system.command.request.general.ShowPatientListCommand;
 
 public class CommandFactory {
 	
@@ -22,6 +25,9 @@ public class CommandFactory {
 		commands.put("POST/login", new LoginCommand());
 		commands.put("POST/logout", new LogOutCommand());
 		commands.put("GET/home", new ShowHomePageCommand());
+		commands.put("GET/patients", new ShowPatientListCommand());
+		commands.put("GET/newUser", new CreateNewUserCommand());
+		commands.put("POST/newUser", new SubmitUserCreateCommand());
 	}
 
 	public static CommandFactory getInstanse() {

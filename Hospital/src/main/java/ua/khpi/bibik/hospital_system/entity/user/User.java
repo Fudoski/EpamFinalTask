@@ -8,6 +8,7 @@ public class User extends Entity {
 	protected String password;
 	protected String name;
 	protected String type;
+	protected String dob;
 
 	/**
 	 * user surname
@@ -23,73 +24,6 @@ public class User extends Entity {
 
 	public User() {
 		super();
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSname() {
-		return sname;
-	}
-
-	public void setSname(String sname) {
-		this.sname = sname;
-	}
-
-	public String getMname() {
-		return mname;
-	}
-
-	public void setMname(String mname) {
-		this.mname = mname;
-	}
-
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((mname == null) ? 0 : mname.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((phoneNum == null) ? 0 : phoneNum.hashCode());
-		result = prime * result + ((sname == null) ? 0 : sname.hashCode());
-		return result;
 	}
 
 	@Override
@@ -122,6 +56,81 @@ public class User extends Entity {
 		} else if (!sname.equals(other.sname))
 			return false;
 		return true;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public String getMname() {
+		return mname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public String getSname() {
+		return sname;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((mname == null) ? 0 : mname.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phoneNum == null) ? 0 : phoneNum.hashCode());
+		result = prime * result + ((sname == null) ? 0 : sname.hashCode());
+		return result;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override
