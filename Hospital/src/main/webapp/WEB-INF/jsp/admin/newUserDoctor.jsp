@@ -103,7 +103,7 @@
 													<option value="2">Option 2</option>
 													<option value="3">Option 3</option>
 													<c:forEach items="${speclist}" var="spec">
-														<option value="${spec}">${spec}></option>
+														<option value="${spec.id}">${spec.name}></option>
 													</c:forEach>
 												</select>
 											</div>

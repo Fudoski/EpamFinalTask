@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ua.khpi.bibik.hospital_system.entity.DoctorSpecialization;
 import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
 import ua.khpi.bibik.hospital_system.page.constant.Attribute;
@@ -13,6 +14,7 @@ import ua.khpi.bibik.hospital_system.page.constant.Page;
 import ua.khpi.bibik.hospital_system.page.constant.Parameter;
 import ua.khpi.bibik.hospital_system.page.resource.AppConfigReader;
 import ua.khpi.bibik.hospital_system.service.AdministratorService;
+import ua.khpi.bibik.hospital_system.service.DoctorService;
 
 public class AdminUserController implements UserController {
 	private List<Doctor> doctors;
@@ -54,9 +56,11 @@ public class AdminUserController implements UserController {
 		switch (userType) {
 		case Attribute.USER_TYPE_DOCTOR:
 			jsp = configReader.getProperty(Page.NEW_DOCTOR);
-			
-			
-			
+			DoctorService docService = new DoctorService();
+
+			List<DoctorSpecialization> specList = docService.getDoctorSpecList();
+			req.setAttribute(Attribute.DOCTOR_SPEC_LIST, specList);
+
 			break;
 		case Attribute.USER_TYPE_PATIENT:
 			jsp = configReader.getProperty(Page.NEW_PATIENT);
