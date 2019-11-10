@@ -12,6 +12,13 @@ public final class SQLQuery {
 	public static final String ADD_NEW_PATIENT = "call addPatient(?,?,?,?,?,?,?)";
 	public static final String UPDATE_DOCTOR = "update user set login=?, password=?, name=?, sname=?, mname=?, phone_num=?, dob=? where id = ?";
 	public static final String UPDATE_PATIENT = "update user set login=?, password=?, name=?, sname=?, mname=?, phone_num=?, dob=? where id = ?";
+	public static final String SELECT_MED_CARD_APPOINTMENTS = "select * from appointment where mc_id = ?;";
+	public static final String SELECT_APPOINTMENT_MED_LIST = "";
+	public static final String SELECT_APPOINTMENT_PROC_LIST = "";
+	public static final String SELECT_MEDICINE_FROM_LIST = "select medicine.* from medicine inner join medicine_list on medicine.id = medicine_list.m_id where medicine_list.id = ?";
+	public static final String SELECT_PROCEDURE_FROM_LIST = "select proc.* from proc inner join procedure_list on proc.id = procedure_list.p_id where procedure_list.id = ?;";
+	public static final String SELECT_OPERATION_BY_ID = "select operation.* from operation inner join appointment on operation.id = appointment.op_id where operation.id = ?;";
+	
 
 	private SQLQuery() {
 		// empty

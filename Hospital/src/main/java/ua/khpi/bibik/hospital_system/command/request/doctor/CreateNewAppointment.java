@@ -10,8 +10,8 @@ import ua.khpi.bibik.hospital_system.controller.UserController;
 import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 import ua.khpi.bibik.hospital_system.page.constant.Redirect;
 
-public class ShowPatientInfoCommand extends RequestCommand {
-	
+public class CreateNewAppointment extends RequestCommand {
+
 	@Override
 	public void execute() throws CommandException, ServletException, IOException {
 		String userType = getUserType(request);
@@ -20,7 +20,7 @@ public class ShowPatientInfoCommand extends RequestCommand {
 			response.sendRedirect(Redirect.getUrl(request, Redirect.HOME));
 			return;
 		}
-		request.setAttribute(Attribute.CONTROLL_PROCESS, Attribute.CONTROLL_PROCESS_DATA );
+		request.setAttribute(Attribute.CONTROLL_PROCESS, Attribute.CONTROLL_PROCESS_CREATE );
 		String jsp = controller.process(request, response);
 		if (jsp == null) {
 			response.sendRedirect(Redirect.getUrl(request, Redirect.HOME));
@@ -28,5 +28,7 @@ public class ShowPatientInfoCommand extends RequestCommand {
 			forward(jsp);	
 		}
 	}
+	
+	
 
 }

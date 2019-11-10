@@ -20,7 +20,7 @@ public class CreateNewUserCommand extends RequestCommand {
 			response.sendRedirect(Redirect.getUrl(request, Redirect.HOME));
 			return;
 		}
-		request.setAttribute(Attribute.CONTROLL_PROCESS, Attribute.CONTROLL_PROCESS_CREATE );
+		request.setAttribute(Attribute.CONTROLL_PROCESS, Attribute.CONTROLL_PROCESS_DATA_EDIT );
 		String jsp = controller.process(request, response);
 		if (jsp == null) {
 			response.sendRedirect(Redirect.getUrl(request, Redirect.HOME));

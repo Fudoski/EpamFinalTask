@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
-import ua.khpi.bibik.hospital_system.entity.user.User;
 import ua.khpi.bibik.hospital_system.hash.HashConverter;
 import ua.khpi.bibik.hospital_system.page.constant.Parameter;
 
@@ -30,12 +29,14 @@ public class RequestObjectHelper {
 		doctor.setPassword(HashConverter.sha256(password));
 		doctor.getDoctorSpecialisation().setId(specID);
 		doctor.setPhoneNum(phone);
-		doctor.setId(Integer.parseInt(id));
+		if (id != null) {
+			doctor.setId(Integer.parseInt(id));	
+		}
 
 		return doctor;
 	}
 
-	public static User getPatient(HttpServletRequest request) {
+	public static Patient getPatient(HttpServletRequest request) {
 		Patient patient = new Patient();
 		String sId = request.getParameter(Parameter.ID);
 		String login = request.getParameter(Parameter.LOGIN);
@@ -53,7 +54,9 @@ public class RequestObjectHelper {
 		patient.setMname(middlename);
 		patient.setDob(birthday);
 		patient.setPhoneNum(phone);
-		patient.setId(Integer.parseInt(sId));
+		if (sId!= null) {
+			patient.setId(Integer.parseInt(sId));
+		}
 
 		return patient;
 	}

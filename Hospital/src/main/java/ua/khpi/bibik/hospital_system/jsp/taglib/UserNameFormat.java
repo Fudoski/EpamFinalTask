@@ -17,9 +17,11 @@ public class UserNameFormat extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		JspContext context = getJspContext();
 		JspWriter out = context.getOut();
-		String formatName = String.format("%s %s.%s.", doctor.getSname(), doctor.getName().subSequence(0, 1),
-				doctor.getMname().subSequence(0, 1));
-		out.append(formatName);
+		if (doctor!= null) {
+			String formatName = String.format("%s %s.%s.", doctor.getSname(), doctor.getName().subSequence(0, 1),
+					doctor.getMname().subSequence(0, 1));
+			out.append(formatName);
+		}
 		super.doTag();
 	}
 

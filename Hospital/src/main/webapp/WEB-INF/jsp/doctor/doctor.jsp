@@ -24,7 +24,7 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto ">
-							<li class="nav-item active"><a class="nav-link" href="#">Patients
+							<li class="nav-item active"><a class="nav-link" href="home">Patients
 							<span class="sr-only">(current)</span>
 							</a></li>
 						</ul>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<form action="patients/info" method="get">
+					<form action="medcard" method="get">
 						<table class="table table-sm table-hover">
 						<thead class="thead-dark">
 							<tr>
@@ -84,7 +84,7 @@
 								<td>${p.phoneNum}</td>
 								<td>
 								<button type="submit"
-								class="btn btn-outline-dark btn-block" value="${p.id}">INFO</button></td>
+								class="btn btn-outline-dark btn-block" name="id" value="${p.id}">INFO</button></td>
 							</tr>
 							<c:set var="i" value="${i+1}" />
 							</c:forEach>
