@@ -60,7 +60,8 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="table table-sm table-hover">
+					<form action="patient/info" method="get">
+						<table class="table table-sm table-hover">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">#</th>
@@ -82,13 +83,14 @@
 								<td>${p.mname}</td>
 								<td>${p.dob}</td>
 								<td>${p.phoneNum}</td>
-								<td><button type="button"
-								class="btn btn-outline-dark btn-block">Edit</button></td>
+								<td><button type="submit"
+								class="btn btn-outline-dark btn-block" name="id" value="${p.id}">Edit</button></td>
 							</tr>
 							<c:set var="i" value="${i+1}" />
 							</c:forEach>
 						</tbody>
 					</table>
+					</form>
 				</div>
 			</main>
 		<footer> </footer>

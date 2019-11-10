@@ -14,5 +14,7 @@ public final class Page {
 	public static final String NEW_PATIENT = "path.page.new.user.patient";
 	public static final String PATIENT = "path.page.patient";
 	public static final String PATIENT_USER_LIST = "path.page.user.patients";
+	public static final String EDIT_DOCTOR = "path.page.user.edit.doctor";
+	public static final String EDIT_PATIENT = "path.page.user.edit.patient";
 
 }

@@ -6,14 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
 import ua.khpi.bibik.hospital_system.entity.user.User;
 import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 import ua.khpi.bibik.hospital_system.page.constant.Page;
-import ua.khpi.bibik.hospital_system.page.constant.Parameter;
 import ua.khpi.bibik.hospital_system.page.resource.AppConfigReader;
-import ua.khpi.bibik.hospital_system.service.AdministratorService;
 import ua.khpi.bibik.hospital_system.service.DoctorService;
 
 public class DoctorUserController implements UserController {

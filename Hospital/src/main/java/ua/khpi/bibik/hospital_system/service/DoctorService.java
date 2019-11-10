@@ -52,5 +52,31 @@ public class DoctorService {
 		}
 		return patients;
 	}
+	
+	public Doctor getDoctorById(int id) {
+		Doctor doctor = null;
+		if (id <= 0) {
+			return null;
+		}
+		MySQLDAOFactory factory = MySQLDAOFactory.getInstance();
+		try {
+			DoctorDAO dao = (DoctorDAO) factory.getDao(Doctor.class);
+			doctor =  dao.selectById(id);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		return doctor;
+	}
+
+	public void updateDoctor(Doctor doctor) {
+		MySQLDAOFactory factory = MySQLDAOFactory.getInstance();
+		try {
+			DoctorDAO dao = (DoctorDAO) factory.getDao(Doctor.class);
+			dao.update(doctor);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

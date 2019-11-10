@@ -54,9 +54,39 @@ public class DoctorDAO extends AbstractDAO<Doctor> {
 	}
 
 	@Override
-	public Doctor update(Doctor entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Doctor update(Doctor doctor) throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String sql = SQLQuery.UPDATE_DOCTOR;
+		try {
+			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			connection = connectionPool.takeConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, doctor.getLogin());
+			statement.setString(2, doctor.getPassword());
+			statement.setString(3, doctor.getName());
+			statement.setString(4, doctor.getSname());
+			statement.setString(5, doctor.getMname());
+			statement.setString(6, doctor.getPhoneNum());
+			statement.setString(7, doctor.getDob());
+			statement.setInt(8, doctor.getId());
+			int rows = statement.executeUpdate();
+			
+			if (rows != 1) {
+				throw new DAOException();
+			}
+		} catch (SQLException | ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			try {
+				closeConnection(connection, statement, resultSet);
+			} catch (ConnectionPoolException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return doctor;
 	}
 
 	@Override
@@ -67,8 +97,42 @@ public class DoctorDAO extends AbstractDAO<Doctor> {
 
 	@Override
 	public Doctor selectById(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Doctor doctor = new Doctor();
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String sql = SQLQuery.SELECT_DOCTOR_BY_ID;
+		try {
+			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			connection = connectionPool.takeConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				doctor.setId(resultSet.getInt(SQLField.USER_ID));
+				doctor.setLogin(resultSet.getString(SQLField.USER_LOGIN));
+				doctor.setPassword(resultSet.getString(SQLField.USER_PASSWORD));
+				doctor.setName(resultSet.getString(SQLField.USER_NAME));
+				doctor.setMname(resultSet.getString(SQLField.USER_MIDDLENAME));
+				doctor.setSname(resultSet.getString(SQLField.USER_SURNAME));
+				doctor.setPhoneNum(resultSet.getString(SQLField.USER_PHONE_NUM));
+				DoctorSpecialization spec = new DoctorSpecialization();
+				spec.setName(resultSet.getString(SQLField.DOCTOR_SPEC));
+				doctor.setDob(resultSet.getString(SQLField.USER_DOB));
+				doctor.setDoctorSpecialisation(spec);
+				doctor.setAmountOfPatients(resultSet.getInt(SQLField.DOCTOR_PATIENTS));
+			}
+		} catch (SQLException | ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			try {
+				closeConnection(connection, statement, resultSet);
+			} catch (ConnectionPoolException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return doctor;
 	}
 
 	@Override

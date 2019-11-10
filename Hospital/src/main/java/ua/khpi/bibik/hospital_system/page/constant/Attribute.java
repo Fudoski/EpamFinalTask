@@ -27,6 +27,12 @@ public class Attribute {
 	public static final String DOCTOR = "doc";
 
 	public static final String CONTROLL_PROCESS_SUBMIT = "submit";
+
+	public static final String CONTROLL_PROCESS_DATA_EDIT = "edit";
+	
+	public static final String PATIENT = "p";
+
+	public static final String CONTROLL_PROCESS_DATA_UPDATE = "update";
 	
 
 }

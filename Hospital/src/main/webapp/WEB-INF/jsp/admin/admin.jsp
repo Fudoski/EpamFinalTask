@@ -62,7 +62,8 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="table table-sm table-hover">
+					<form action="doctor/info">
+						<table class="table table-sm table-hover">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">#</th>
@@ -86,13 +87,14 @@
 								<td>${doc.doctorSpecialisation.name}</td>
 								<td>${doc.phoneNum}</td>
 								<td>${doc.amountOfPatients}</td>
-								<td><button type="button"
-								class="btn btn-outline-dark btn-block">Edit</button></td>
+								<td><button type="submit"
+								class="btn btn-outline-dark btn-block" name="id" value="${doc.id}">Edit</button></td>
 							</tr>
 							<c:set var="i" value="${i+1}" />
 							</c:forEach>
 						</tbody>
 					</table>
+					</form>
 				</div>
 			</main>
 		<footer> </footer>

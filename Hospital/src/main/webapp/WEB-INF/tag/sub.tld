@@ -1,0 +1,20 @@
+<taglib version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xsi:schemalocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+   <jsp-version>2.0</jsp-version>
+   <short-name>Example TLD with Body</short-name>
+   
+   <tag>
+      <name>sub</name>
+      <tag-class>ua.khpi.bibik.hospital_system.jsp.taglib.UserNameFormat</tag-class>
+      <body-content>scriptless</body-content>
+      <attribute>
+      <name>doctor</name>
+      <required>true</required>
+      <type>ua.khpi.bibik.hospital_system.entity.user.Doctor</type>
+      <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>	
+</taglib>

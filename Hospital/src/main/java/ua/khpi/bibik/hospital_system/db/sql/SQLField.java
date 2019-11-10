@@ -17,6 +17,8 @@ public final class SQLField {
 	public static final String DOCTOR_SPEC_NAME = "name";
 	public static final String DOCTOR_PATIENTS = "patients";
 	public static final String USER_DOB = "dob";
+	public static final String MED_CARD_ID = "mc_id";
+	public static final String MED_CARD_DOC_ID = "docr_id";
 
 	private SQLField() {
 		// empty
