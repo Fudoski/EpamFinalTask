@@ -4,130 +4,167 @@
 <%@ taglib prefix="ex" uri="/WEB-INF/tag/sub.tld"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Hospital: Authorization</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="./resource/bootstrap/bootstrap.css"/>
-<link rel="stylesheet" type="text/css" href="./resource/css/login.css">
+	<head>
+	<title>Hospital: main page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.css">
+	<script src="${pageContext.request.contextPath}/resource/bootstrap/jquery-3.4.1.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/bootstrap/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function addMedicine() {
+			var tbody = document.getElementById('medicine');
+			var btn = document.getElementById('amb');
+			var tr = document.createElement('tr');
+			var inpt = document.createElement('input');
+			inpt.setAttribute('type','text');
+			inpt.setAttribute('class','form-control');
+			inpt.setAttribute('name','newmed');
+			inpt.setAttribute('placeholder','enter medicine...');
+			inpt.setAttribute('required','required');
+			var td = document.createElement('td');
+			td.setAttribute('scope', 'row');
+			td.appendChild(inpt);
+			tr.appendChild(td);
+			tbody.insertBefore(tr,btn);
+		}
+
+		function addProcedure() {
+			var tbody = document.getElementById('procedure');
+			var btn = document.getElementById('apb');
+			var tr = document.createElement('tr');
+			var inpt = document.createElement('input');
+			inpt.setAttribute('type','text');
+			inpt.setAttribute('class','form-control');
+			inpt.setAttribute('name','newproc');
+			inpt.setAttribute('placeholder','enter procedure...');
+			inpt.setAttribute('required','required');
+			var td = document.createElement('td');
+			td.setAttribute('scope', 'row');
+			td.appendChild(inpt);
+			tr.appendChild(td);
+			tbody.insertBefore(tr,btn);
+		}
+	</script>
+	<script type="text/javascript">
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 </head>
-	<body>
-		<main class="h-100">
-			<section id="cover">
-				<div id="cover-caption">
-					<div id="container" class="container">
-						<div class="row">
-							<div class="col-sm-6 offset-sm-3">
-								<h1 class="display-4">Authorization</h1>
-								<div class="info-form">
-									<form class="form-inlin justify-content-center" action="login" method="post">
-										<div class="container-fluid border border-dark rounded mb-4 mt-2">
-							<!-- APPOINTMENT ID -->
-							<div class="row">
-								<div class="col bg-dark text-white" >
-									<p class="font-weight-bold">Num of appointment #<c:out value="${appment.id}"></c:out> </p>
-								</div>
-							</div>
-							<!-- DOCTOR INFO -->
-							<div class="row bg-light">
-								<!-- doc full name-->
-								<div class="col-2">
-									DOCTOR:
-								</div>
-								<div class="col-2">
-									<ex:sub doctor="${doc}"></ex:sub>
-								</div>
-								<div class="col-3">
-									<p>Spec:${doc.doctorSpecialisation.name}</p>
-								</div>
-							</div>
-							<!-- MEDICINE LIST -->
-							<div class="row">
-								<div class="col bg-success text-white" >
-									<p class="font-weight-bold">MEDICINE LIST</p>
-								</div>
-							</div>
-							<div class="row">
-								<table class="table table-sm">
-									<thead class="thead-light">
-										<tr>
-											<th scope="col">description</th>
-											<th scope="col">complete</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${appment.medList}" var="med">
-											<tr>
-												<td scope="row"><c:out value="${med.discription}"></c:out></td>
-												<td><c:out value="${med.medStaffID}"></c:out></td>
-											</tr>
-										
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<!-- PROCEDURE LIST -->
-							<div class="row">
-								<div class="col bg-info text-white" >
-									<p class="font-weight-bold">PROCEDURE LIST</p>
-								</div>
-							</div>
-							<div class="row">
-								<table class="table table-sm">
-									<thead class="thead-light">
-										<tr>
-											<th scope="col">Описание процедуры</th>
-											<th scope="col">Выполнил</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach items="${appment.procList}" var="proc">
-										<tr>
-											<td scope="row"><c:out value="${proc.discription}"></c:out></td>
-											<td><c:out value="${proc.medStaffID}"></c:out> </td>
-										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<!-- OPERATION INFO -->
-							<div class="row">
-								<div class="col bg-warning	 text-white" >
-									<p class="font-weight-bold">Операция</p>
-								</div>
-							</div>
-							<!-- OPERATION DESCRIPTION -->
-							<div class="row bg-light">
-								<div class="col-2">
-									Описание:
-								</div>
-								<div class="col-10">
-									<c:out value="${appment.operation.discription}"></c:out>
-								</div>
-							</div>
-							<div class="row bg-dark" style="height: 3px">
-								<p></p>
-							</div>
-							<div class="row bg-light">
-								<!-- doc full name-->
-								<div class="col-2">
-									Доктор:
-								</div>
-								<div class="col-4">
-									Бибик А.В.
-								</div>
-								<div class="col-6">
-									Специальность: хирург
-								</div>
-							</div>
-						</div>
-									</form>
-								</div>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+			<span class="navbar-brand mb-0 h1">Hospital</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto ">
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/home">Patients
+					</a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" action="logout" method="post">
+					<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log
+					out</button>
+				</form>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<section id="cover">
+			<div id="cover-caption">
+				<div id="container" class="container">
+					<div class="row">
+						<div class="col">
+							<h1 class="display-4">Назначение</h1>
+							<div class="info-form">
+								<form class="form-inlin justify-content-center" action="${pageContext.request.contextPath}/newAppointment" method="post">
+									<div class="container-fluid border border-dark rounded mb-4 mt-2">
+										<!-- DOCTOR INFO -->
+										<div class="row bg-light">
+											<!-- doc full name-->
+											<div class="col-4">
+												DOCTOR:
+											</div>
+											<div class="col-4">
+												Фамилия Инициалы
+											</div>
+											<div class="col-4">
+												Хирург
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<input type="text" name="diagnosis" class="form-control" placeholder="enter patient diagnosis..." name="diagnosis" required="required">
+											</div>
+										</div>
+										<!-- MEDICINE LIST -->
+										<div class="row">
+											<div class="col bg-success text-white" >
+												<p class="font-weight-bold">MEDICINE LIST</p>
+											</div>
+										</div>
+										<div class="row">
+											<table class="table table-sm">
+												<tbody id="medicine">
+													<tr id='amb'>
+														<td scope="row"><button type="button" class="btn btn-primary rounded-circle" onclick="addMedicine()"><span class="font-weight-bold">+</span></button></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!-- PROCEDURE LIST -->
+										<div class="row">
+											<div class="col bg-info text-white" >
+												<p class="font-weight-bold">PROCEDURE LIST</p>
+											</div>
+										</div>
+										<div class="row">
+											<table class="table table-sm">
+												<tbody id="procedure">
+													<tr id='apb'>
+														<td scope="row"><button type="button" class="btn btn-primary rounded-circle" onclick="addProcedure()"><span class="font-weight-bold">+</span></button></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!-- OPERATION INFO -->
+										<div class="row">
+											<div class="col bg-warning	 text-white" >
+												<p class="font-weight-bold">Операция</p>
+											</div>
+										</div>
+										<!-- OPERATION DESCRIPTION -->
+										<div class="row bg-light mt-2">
+											<div class="col"> 
+												<input type="text" name="opdescription" class="form-control" />
+											</div>
+										</div>
+										<div class="row mt-2">
+											<div class="col">
+												<div class="form-group">
+													<button type="submit" name="id" value="${pID}" class="btn btn-outline-secondary">Назначить</button>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-check">
+												    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="discharge">
+												    <label class="form-check-label" for="exampleCheck1">Discharge</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-		</main>
-	</body>
+			</div>
+		</section>
+	</main>
+</body>
 </html>

@@ -18,6 +18,19 @@ public final class SQLQuery {
 	public static final String SELECT_MEDICINE_FROM_LIST = "select medicine.* from medicine inner join medicine_list on medicine.id = medicine_list.m_id where medicine_list.id = ?";
 	public static final String SELECT_PROCEDURE_FROM_LIST = "select proc.* from proc inner join procedure_list on proc.id = procedure_list.p_id where procedure_list.id = ?;";
 	public static final String SELECT_OPERATION_BY_ID = "select operation.* from operation inner join appointment on operation.id = appointment.op_id where operation.id = ?;";
+	public static final String SELECT_MED_CARD_FOR_PATIENT = "select * from med_card where p_id = ?";
+	public static final String ADD_MEDICINE = "insert into medicine values(default, ?, null)";
+	public static final String INSERT_MEDICINE_TO_LIST = "insert into medicine_list values(?,?)";
+	public static final String INSERT_MEDICINE_TO_LIST_DEFAULT = "insert into medicine_list values(default,?)";
+	public static final String INSERT_PROCEDURE_TO_LIST_DEFAULT = "insert into procedure_list values(default, ?)";
+	public static final String INSERT_PROCEDURE_TO_LIST = "insert into procedure_list values(?, ?)";
+	public static final String ADD_PROC = "insert into proc values(default,?,default)";
+	public static final String ADD_APPOINTMENT = "insert into appointment values(default, ?, ?, ?,?,?,?,now());";
+	public static final String ADD_APPOINTMENT_DEFAULT_OP = "insert into appointment values(default, ?, ?, ?,?,?,default,now());";
+	public static final String UPDATE_MED_CARD = "UPDATE MED_CARD SET docr_id = ? where p_id = ?";
+	public static final String UPDATE_MED_CARD_DEFF = "UPDATE MED_CARD SET docr_id = null where p_id = ?";
+	public static final String SELECT_PROC_VIEW = "SELECT * FROM proc_view where ms_id is null";
+	public static final String SELECT_MEDICINE_VIEW = "SELECT * FROM medicine_view where ms_id is null";
 	
 
 	private SQLQuery() {

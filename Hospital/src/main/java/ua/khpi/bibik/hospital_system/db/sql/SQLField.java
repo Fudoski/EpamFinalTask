@@ -39,6 +39,11 @@ public final class SQLField {
 	public static final String OPERATION_ENT_DT = "op_dt_end";
 	public static final String OPERATION_DOC_ID = "doc_id";
 	public static final String APPOINTMENT_DIAGNOSIS = "diagnosis";
+	public static final String MED_CARD_ONLY_ID = "id";
+	public static final String VIEW_MODEL_PATIEN_ID = "p_id";
+	public static final String VIEW_MODEL_DOC_ID = "doc_id";
+	public static final String VIEW_MODEL_DESCRIPTION = "desc";
+	public static final String VIEW_MODEL_APPOINTMENT_ID = "id";
 
 	private SQLField() {
 		// empty

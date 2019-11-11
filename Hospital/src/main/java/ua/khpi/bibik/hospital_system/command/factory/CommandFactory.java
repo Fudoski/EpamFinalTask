@@ -15,8 +15,10 @@ import ua.khpi.bibik.hospital_system.command.request.admin.UpdateDoctorDataComma
 import ua.khpi.bibik.hospital_system.command.request.admin.UpdatePatientDataCommand;
 import ua.khpi.bibik.hospital_system.command.request.doctor.CreateNewAppointment;
 import ua.khpi.bibik.hospital_system.command.request.doctor.ShowPatientInfoCommand;
+import ua.khpi.bibik.hospital_system.command.request.doctor.SubmitAppointmentCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.LogOutCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.LoginCommand;
+import ua.khpi.bibik.hospital_system.command.request.general.ShowAppointmentsPageCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.ShowHomePageCommand;
 import ua.khpi.bibik.hospital_system.command.request.general.ShowPatientListCommand;
 
@@ -48,6 +50,8 @@ public class CommandFactory {
 		commands.put("POST/update/patient", new UpdatePatientDataCommand());
 		commands.put("GET/medcard", new ShowPatientInfoCommand());
 		commands.put("GET/newAppointment", new CreateNewAppointment());
+		commands.put("POST/newAppointment", new SubmitAppointmentCommand());
+		commands.put("GET/appointments",new ShowAppointmentsPageCommand());
 	}
 
 	public RequestCommand getCommand(HttpServletRequest request) {

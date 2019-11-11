@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.Param;
-
 import ua.khpi.bibik.hospital_system.entity.medcard.MedicalCard;
 import ua.khpi.bibik.hospital_system.entity.medcard.appointment.Appointment;
 import ua.khpi.bibik.hospital_system.entity.medcard.appointment.Medicine;
 import ua.khpi.bibik.hospital_system.entity.medcard.appointment.Procedure;
+import ua.khpi.bibik.hospital_system.entity.model.MedicineDataModel;
+import ua.khpi.bibik.hospital_system.entity.model.ProcedureDataModel;
 import ua.khpi.bibik.hospital_system.entity.user.Doctor;
 import ua.khpi.bibik.hospital_system.entity.user.Patient;
 import ua.khpi.bibik.hospital_system.entity.user.User;
@@ -38,6 +38,11 @@ public class DoctorUserController implements UserController {
 			processType = "";
 		}
 		switch (processType) {
+		case Attribute.CONTROLL_PROCESS_APPOINTMENTS:
+			
+			processAppointments();
+			
+			return configReader.getProperty(Page.APPOINTMENTS);
 		case Attribute.CONTROLL_PROCESS_DATA_EDIT:
 			return jsp;
 		case Attribute.CONTROLL_PROCESS_DATA:
@@ -50,6 +55,8 @@ public class DoctorUserController implements UserController {
 			jsp = configReader.getProperty(Page.NEW_APPOINTMENT);
 			return jsp;
 		case Attribute.CONTROLL_PROCESS_SUBMIT:
+			
+			submitCreate();
 			return null;
 		default:
 			doctorService = new DoctorService();
@@ -59,6 +66,54 @@ public class DoctorUserController implements UserController {
 			request.setAttribute(Attribute.PATIENT_LIST, patients);
 
 			return configReader.getProperty(Page.DOCTOR);
+		}
+	}
+
+	private void processAppointments() {
+		
+		List<ProcedureDataModel> procedureDataModels = doctorService.getAppointmentProcedures();
+		List<MedicineDataModel> medicineDataModels = doctorService.getAppointmentMedicines();
+		
+		req.setAttribute(Attribute.PROCEDURE_MODEL_LIST, procedureDataModels);
+		req.setAttribute(Attribute.MEDICINE_MODEL_LIST, medicineDataModels);
+		
+	}
+
+	private void submitCreate() {
+		String diagnosis = req.getParameter(Parameter.PATIENT_DIAGNOSIS);
+		String[] medicines = req.getParameterValues(Parameter.MIDICINE);
+		String[] procedures = req.getParameterValues(Parameter.PROCEDURE);
+		String opdescription = req.getParameter(Parameter.OPERATION_DESCRIPTION);
+		int patientId = Integer.parseInt(req.getParameter(Parameter.ID));
+		MedicalCard card = doctorService.getMedCardOfPatient(patientId);
+		Appointment appointment = new Appointment();
+		appointment.setDiagnosis(diagnosis);
+		appointment.getOperation().setDiscription(opdescription);
+		if (medicines == null) {
+			medicines = new String[0];
+		}
+		if (procedures == null) {
+			procedures = new String[0];
+		}
+		
+		HttpSession session = req.getSession(false);
+		User user = (User) session.getAttribute(Attribute.USER);
+
+		int medicineListId = doctorService.addMedicines(medicines);
+
+		int procedureListId = doctorService.addProcedures(procedures);
+		
+		appointment.setMedListID(medicineListId);
+		appointment.setProcListID(procedureListId);
+		appointment.setMedcardID(card.getId());
+		appointment.setDoctorID(user.getId());
+		
+		doctorService.addAppointment(appointment);
+		String discharge = req.getParameter(Parameter.PATIENT_DISCHARGE);
+		if ("on".equals(discharge)) {
+			card.setPatientID(patientId);
+			doctorService.dischargePatient(card);
+			
 		}
 	}
 

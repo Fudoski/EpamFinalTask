@@ -27,6 +27,8 @@
 							<li class="nav-item active"><a class="nav-link" href="home">Patients
 							<span class="sr-only">(current)</span>
 							</a></li>
+							<li class="nav-item"><a class="nav-link" href="appointments">Appointments
+							</a></li>
 						</ul>
 						<form class="form-inline my-2 my-lg-0" action="logout" method="post">
 							<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log

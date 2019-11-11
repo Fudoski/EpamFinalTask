@@ -50,6 +50,7 @@
 							<form action="patients" method="get">
 								<div class="dropdown-menu">
 								<button class="dropdown-item ${empty sort or sort eq 'alphabet'? 'text-info':'' }" type="submit" name="sort" value="alphabet">Alphabet</button>
+								<button class="dropdown-item ${sort eq 'dob'? 'text-info':'' }" type="submit" name="sort" value="dob">Birthday</button>
 							</div>
 							</form>
 						</div>

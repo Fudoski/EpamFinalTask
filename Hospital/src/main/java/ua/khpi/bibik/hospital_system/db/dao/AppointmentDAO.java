@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,43 @@ public class AppointmentDAO extends AbstractDAO<Appointment> {
 
 	@Override
 	public Appointment insert(Appointment entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		boolean def = entity.getOperation().getId() == 0;
+		String sql = SQLQuery.ADD_APPOINTMENT;
+		if(def) {
+			sql = SQLQuery.ADD_APPOINTMENT_DEFAULT_OP;
+		}
+		try {
+			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			connection = connectionPool.takeConnection();
+			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, entity.getDiagnosis());
+			statement.setInt(2, entity.getDoctorID());
+			statement.setInt(3, entity.getMedcardID());
+			statement.setInt(4, entity.getProcListID());
+			statement.setInt(5, entity.getMedListID());
+			if (!def) {
+				statement.setInt(6, entity.getOperation().getId());
+			}
+			int rows = statement.executeUpdate();
+			
+			resultSet = statement.getGeneratedKeys();
+			if (resultSet.next()) {
+				entity.setId(resultSet.getInt(1));
+			}
+			
+		} catch (SQLException | ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			try {
+				closeConnection(connection, statement, resultSet);
+			} catch (ConnectionPoolException e) {
+				e.printStackTrace();
+			}
+		}
+		return entity;
 	}
 
 	@Override

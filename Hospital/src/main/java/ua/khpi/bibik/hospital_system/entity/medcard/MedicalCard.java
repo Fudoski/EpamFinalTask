@@ -7,7 +7,7 @@ import ua.khpi.bibik.hospital_system.entity.medcard.appointment.Appointment;
 
 public class MedicalCard extends Entity {
 	private int doctorID;
-
+	private int patientID;
 	private List<Appointment> appointments;
 
 	public List<Appointment> getAppointments() {
@@ -24,6 +24,14 @@ public class MedicalCard extends Entity {
 
 	public void setDoctorID(int doctorID) {
 		this.doctorID = doctorID;
+	}
+
+	public int getPatientID() {
+		return patientID;
+	}
+
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
 	}
 
 }

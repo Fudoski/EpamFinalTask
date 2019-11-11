@@ -1,6 +1,7 @@
 package ua.khpi.bibik.hospital_system.controller;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,7 @@ public class AdminUserController implements UserController {
 		case Attribute.CONTROLL_PROCESS_DATA:
 			patients = service.getAllPatients();
 			request.setAttribute(Attribute.PATIENT_LIST, patients);
-			sortIfPramExist(request);
+			sortPatientIfParametrExist(request);
 			return configReader.getProperty(Page.PATIENT_USER_LIST);
 
 		case Attribute.CONTROLL_PROCESS_CREATE:
@@ -112,7 +113,7 @@ public class AdminUserController implements UserController {
 			Patient patient = pService.getPatientById(patientID);
 			doctor = doctorService.getDoctorById(patient.getCard().getDoctorID());
 			List<Doctor> docList = service.getAllDoctors();
-			
+
 			req.setAttribute(Attribute.DOCTOR_LIST, docList);
 			req.setAttribute(Attribute.DOCTOR, doctor);
 			req.setAttribute(Attribute.PATIENT, patient);
@@ -149,11 +150,42 @@ public class AdminUserController implements UserController {
 
 			break;
 		case Attribute.USER_TYPE_PATIENT:
-			
+
 			jsp = configReader.getProperty(Page.NEW_PATIENT);
 			break;
 		}
 		return jsp;
+	}
+
+	private void sortPatientIfParametrExist(HttpServletRequest request) {
+		String sortBy = request.getParameter(Parameter.SORT);
+		if (sortBy != null) {
+			switch (sortBy) {
+			default:
+				sortBy = Parameter.SORT_ALPHABET;
+			case Parameter.SORT_ALPHABET:
+				Collections.sort(patients, new Comparator<Patient>() {
+
+					@Override
+					public int compare(Patient o1, Patient o2) {
+						String doc1FullName = o1.getName() + o1.getSname() + o1.getMname();
+						String doc2FullName = o2.getName() + o2.getSname() + o2.getMname();
+
+						return doc1FullName.compareToIgnoreCase(doc2FullName);
+					}
+				});
+				break;
+			case Parameter.SORT_DOB:
+				Collections.sort(patients, new Comparator<Patient>() {
+					@Override
+					public int compare(Patient o1, Patient o2) {
+						return o1.getDob().compareTo(o2.getDob());
+					}
+				});
+				break;
+			}
+			request.setAttribute(Parameter.SORT, sortBy);
+		}
 	}
 
 	private void sortIfPramExist(HttpServletRequest request) {

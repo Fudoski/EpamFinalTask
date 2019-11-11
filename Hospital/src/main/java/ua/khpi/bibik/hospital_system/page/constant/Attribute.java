@@ -35,6 +35,12 @@ public class Attribute {
 	public static final String CONTROLL_PROCESS_DATA_UPDATE = "update";
 
 	public static final String PATIENT_ID = "pID";
+
+	public static final String CONTROLL_PROCESS_APPOINTMENTS = "appointments";
+
+	public static final String PROCEDURE_MODEL_LIST = "procModelList";
+
+	public static final String MEDICINE_MODEL_LIST = "medModelList";
 	
 
 }

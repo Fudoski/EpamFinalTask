@@ -17,6 +17,7 @@ import ua.khpi.bibik.hospital_system.controller.UserController;
 import ua.khpi.bibik.hospital_system.controller.factory.UserControllerFactory;
 import ua.khpi.bibik.hospital_system.page.constant.Attribute;
 
+
 public class RequestCommand implements Command {
 
 	protected ServletContext context;
